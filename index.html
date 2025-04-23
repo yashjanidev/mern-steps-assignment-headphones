@@ -86,22 +86,26 @@ console.log(allLines);
 function addSteps() {
 
   for (let i = 0; i < allCircles.length; i++) {
-    if (i + 1 === circleCount) {
-      allCircles[i].style.backgroundColor = 'green';
-      allCircles[i].style.color = 'white';
+    if (i + 1 < circleCount) {
+         allCircles[i].style.backgroundColor = 'green';
+         allCircles[i].style.color = 'white';
+      
+    } else if (i + 1 === circleCount) {
+         allCircles[i].style.backgroundColor = 'green';
+         allCircles[i].style.color = 'white';
     } else {
-      allCircles[i].style.backgroundColor = 'yellow';
-      allCircles[i].style.color = 'black';
+         allCircles[i].style.backgroundColor = 'yellow';
+         allCircles[i].style.color = 'black';
     }
 
     if (i < allLines.length) {
       if (i + 1 < circleCount) {
-        allLines[i].style.backgroundColor = 'green';
-        allLines[i].style.display = 'block';
-      } else {
-        allLines[i].style.display = 'none';
+           allLines[i].style.backgroundColor = 'green';
+           allLines[i].style.display = 'block';
+         } else {
+           allLines[i].style.display = 'none';
+         }
       }
-    }
   }
 
   if (circleCount === 1) {
