@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+   body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        padding-top: 40px;
+      }
+
+   .circle {
+   		background-color: yellow;
+        border-radius: 100px;
+        width: 20px;
+        text-align: center;
+        margin: 20px;
+   }
+   
+   .progress-line {
+   		border: 2px solid blue;
+        height: 50px;
+        display: none;
+        flex-direction: column;
+   }
+   .button_div {
+   		display: flex;
+   }
+</style>
+
+<body>
+<p>Men are brave</p>
+
+<div class="button_div">
+<button id="next-button" style="margin-right: 15px;">Next</button>
+<br>
+<button id="prev-button" disabled>Previous</button>
+</div>
+
+<div class="circle circle-one">
+1
+</div>
+
+<div class="progress-line"></div>
+
+<div class="circle circle-two">
+2
+</div>
+<div class="progress-line"></div>
+
+<div class="circle circle-three">
+3
+</div>
+<div class="progress-line"></div>
+
+<div class="circle circle-four">
+4
+</div>
+<div class="progress-line"></div>
+
+<div class="circle circle-five">
+5
+</div>
+
+<script>
+let circleCount = 1;
+const allCircles = document.querySelectorAll('.circle');
+const allLines = document.querySelectorAll('.progress-line');
+
+function addSteps() {
+
+  for (let i = 0; i < allCircles.length; i++) {
+    if (i + 1 === circleCount) {
+      allCircles[i].style.backgroundColor = 'green';
+      allCircles[i].style.color = 'white';
+    } else {
+      allCircles[i].style.backgroundColor = 'yellow';
+      allCircles[i].style.color = 'black';
+    }
+
+    if (i < allLines.length) {
+      if (i + 1 < circleCount) {
+        allLines[i].style.backgroundColor = 'green';
+        allLines[i].style.display = 'block';
+      } else {
+        allLines[i].style.display = 'none';
+      }
+    }
+  }
+
+  if (circleCount === 1) {
+    document.getElementById('prev-button').disabled = true;
+  } else if (circleCount === allCircles.length) {
+    document.getElementById('next-button').disabled = true;
+  } else {
+    document.getElementById('prev-button').disabled = false;
+    document.getElementById('next-button').disabled = false;
+  }
+}
+
+document.getElementById('next-button').addEventListener('click', function() {
+  if (circleCount < allCircles.length) {
+    circleCount++;
+    addSteps();
+  }
+});
+
+document.getElementById('prev-button').addEventListener('click', function() {
+  if (circleCount > 1) {
+    circleCount--;
+    addSteps();
+  }
+});
+
+addSteps();
+
+</script>
+
+</body>
+
+</html>
